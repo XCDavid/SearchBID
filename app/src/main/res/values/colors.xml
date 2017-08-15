@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5BC500</color>
+    <color name="colorPrimaryDark">#64ba3b</color>
+    <color name="colorAccent">#00769F</color>
+    <color name="colorGray">#BFC0C0</color><!--B6B6B6-->
+    <color name="transparentGray">#AAB6B6B6</color>
+    <color name="colorWhite">#FFF</color>
+    <!--Button state colors-->
+    <color name="button_disabled">#B6B6B6</color>
+    <color name="button_pressed">#4BB3FD</color>
+    <!--Button state colors-->
+    <color name="image_button_active">#81A4CD</color>
+    <color name="image_button_pressed">#DBE4EE</color>
+
+    <!--Text color form-->
+    <color name="text_color_white">#FFF</color>
+
+    <!--Transparent Color image button-->
+    <color name="button_pressed_transparent">#B6B6B6</color>
+    <color name="button_active_transparent">#AAB6B6B6</color>
+
+    <!--LogIn Button state colors-->
+    <color name="button_login_disabled">#B6B6B6</color>
+    <color name="button_login_pressed">#4BB3FD</color>
+    <color name="button_login_active">#00769F</color>
+</resources>
