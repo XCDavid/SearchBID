@@ -14,16 +14,16 @@ public class BaseActivity extends AppCompatActivity implements BaseAction {
     protected void onResume() {
         super.onResume();
         String token = SharedPreferencesUtils.readFromPreferencesString(this, SharedPreferencesUtils.TOKEN_APP, "");
-        if (token.equals("")) {
-            if (this instanceof LogInActivity) {
-                /// ....
-            } else {
-                Intent end = new Intent(getApplicationContext(), LogInActivity.class);
-                end.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(end);
-                finish();
-            }
-        }
+//        if (token.equals("")) {
+//            if (this instanceof LogInActivity) {
+//                /// ....
+//            } else {
+//                Intent end = new Intent(getApplicationContext(), LogInActivity.class);
+//                end.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(end);
+//                finish();
+//            }
+//        }
     }
 
     @Override

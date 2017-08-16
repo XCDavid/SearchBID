@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">SearchTAS</string>
+    <!--LogIn LogOut Load Strings-->
+    <string name="get_user_log_in">Autenticando</string>
+    <string name="message_log_out">Saliendo</string>
+    <string name="message_title_logout">Salir de la aplicación</string>
+    <string name="message_message_logout">Al salir de la aplicación la operación actual será cancelada y la sesión actual se cerrará\n¿Desea salir de la aplicación?</string>
+    <string name="message_cancel_operation_title">Cancelar operación</string>
+    <string name="message_cancel_operation">Cancelando operación</string>
+    <string name="message_cancel_operation_alert">La operación actual será cancelada y regresarás a la pantalla principal\n¿Desea cancelar la operación actual?</string>
     <!--LogIn Activity string-->
     <string name="tv_user_login">Usuario</string>
     <string name="tv_hint_user_login">Usuario</string>
@@ -19,4 +27,14 @@
     <string name="continue_message_dialog">Continuar</string>
     <string name="cancel_message_dialog">Cancelar</string>
     <string name="message_dialog">Mensaje</string>
+    <!--Form strings-->
+    <string name="form_activity_name">Formulario</string>
+    <string name="required_text_form">* Campos obligatorios</string>
+    <string name="instructions_form">Ingresa los campos obligatorios y presiona el botón continuar, para iniciar la consulta.</string>
+    <string name="name_form">* Nombre(s)</string>
+    <string name="tv_curp_form">* CURP</string>
+    <string name="search_form">Buscar</string>
+    <!--Finger Dialog-->
+    <string name="tv_title_finger_dialog">Esperando Escaneo</string>
+    <string name="b_cancel_finger_dialog">Cancelar</string>
 </resources>
