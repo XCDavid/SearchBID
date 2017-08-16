@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ly_instructions_finger_scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/horizontal_margin_form"
+        android:layout_marginRight="@dimen/horizontal_margin_form"
+        android:layout_marginTop="@dimen/margin_top_form"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="@string/instructions_finger_scan"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/b_finger_search_finger_scan"
+        android:layout_width="80dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/selector__transparent_image_button"
+        android:scaleType="centerCrop"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
+    <Button
+        android:id="@+id/b_continue_finger_scan"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_form"
+        android:layout_alignParentBottom="true"
+        android:text="@string/search_finger_scan"
+        android:textColor="@color/text_color_white"
+        android:background="@drawable/selector_primary_button"/>
+</RelativeLayout>

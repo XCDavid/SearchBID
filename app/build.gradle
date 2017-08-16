@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
-    dexOptions{
+    dexOptions {
         maxProcessCount 3
         javaMaxHeapSize "3g"
     }
@@ -14,6 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -21,6 +22,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    repositories {
+        mavenCentral()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    sourceSets.main
+            {
+                jni.srcDirs = []
+                jniLibs.srcDir 'src/main/jniLibs'
+            }
 }
 
 dependencies {
@@ -28,9 +40,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //Web Service HttpClient
+    compile files('libs/MorphoSmart_SDK_6.16.0.0.jar')
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    //Web Service HttpClient
     compile 'cz.msebera.android:httpclient:4.4.1.2'
+    testCompile 'junit:junit:4.12'
 }

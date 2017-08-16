@@ -24,6 +24,12 @@
         <activity
             android:name=".activities.FormActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.FingerScanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ResultSearchActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

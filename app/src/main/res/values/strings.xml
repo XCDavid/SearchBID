@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">SearchTAS</string>
+    <!--Default Values strings-->
+    <string name="default_url_teknei">http://192.168.1.200:28080/BIDServer/</string>
     <!--LogIn LogOut Load Strings-->
     <string name="get_user_log_in">Autenticando</string>
     <string name="message_log_out">Saliendo</string>
@@ -30,11 +32,16 @@
     <!--Form strings-->
     <string name="form_activity_name">Formulario</string>
     <string name="required_text_form">* Campos obligatorios</string>
-    <string name="instructions_form">Ingresa los campos obligatorios y presiona el botón continuar, para iniciar la consulta.</string>
+    <string name="instructions_form">Ingresa los campos obligatorios y presiona el botón buscar, para iniciar la consulta.</string>
     <string name="name_form">* Nombre(s)</string>
     <string name="tv_curp_form">* CURP</string>
     <string name="search_form">Buscar</string>
+    <!--Form strings-->
+    <string name="finger_scan_activity_name">Formulario</string>
+    <string name="instructions_finger_scan">Presiona el botón gris, para comenzar la captura de la huella dactilar</string>
+    <string name="search_finger_scan">Comprobar identidad</string>
     <!--Finger Dialog-->
     <string name="tv_title_finger_dialog">Esperando Escaneo</string>
+    <string name="tv_message_finger_dialog">Coloca el dedo en el escaner biométrico mientras la luz roja esta encendida.</string>
     <string name="b_cancel_finger_dialog">Cancelar</string>
 </resources>

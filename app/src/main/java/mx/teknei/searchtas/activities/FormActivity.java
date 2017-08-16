@@ -105,14 +105,14 @@ public class FormActivity extends BaseActivity implements View.OnClickListener {
 //            String jsonString = buildJSON();
 //            new StartOperation(FormActivity.this, token, jsonString).execute();
 //        }else {
-//            goNext();
+            goNext();
 //        }
     }
 
     @Override
     public void goNext() {
-//        Intent i = new Intent(FormActivity.this, SelectIdTypeActivity.class);
-//        startActivity(i);
+        Intent i = new Intent(FormActivity.this, FingerScanActivity.class);
+        startActivity(i);
     }
 
     @Override
