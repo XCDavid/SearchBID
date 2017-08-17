@@ -12,7 +12,9 @@
         android:layout_marginLeft="@dimen/horizontal_margin_form"
         android:layout_marginRight="@dimen/horizontal_margin_form"
         android:layout_marginTop="@dimen/margin_top_form"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_above="@+id/b_new_search_result_documents"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,8 +29,8 @@
 
                 <ImageView
                     android:id="@+id/iv_background_face"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="250dp"
+                    android:layout_height="350dp"
                     android:layout_marginBottom="30dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginLeft="8dp"
@@ -45,8 +47,8 @@
 
                 <ImageView
                     android:id="@+id/iv_front_face"
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
+                    android:layout_width="200dp"
+                    android:layout_height="270dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="8dp"
@@ -55,7 +57,7 @@
                     app:layout_constraintLeft_toLeftOf="@+id/iv_background_face"
                     app:layout_constraintRight_toRightOf="@+id/iv_background_face"
                     app:layout_constraintTop_toTopOf="@+id/iv_background_face"
-                    app:srcCompat="@drawable/ic_photo_camera" />
+                    android:layout_marginBottom="0dp" />
             </android.support.constraint.ConstraintLayout>
 
             <LinearLayout
@@ -240,8 +242,8 @@
 
                 <ImageView
                     android:id="@+id/iv_id_front"
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="8dp"
@@ -250,7 +252,7 @@
                     app:layout_constraintLeft_toLeftOf="@+id/iv_background_id_front"
                     app:layout_constraintRight_toRightOf="@+id/iv_background_id_front"
                     app:layout_constraintTop_toTopOf="@+id/iv_background_id_front"
-                    app:srcCompat="@drawable/ic_photo_camera"
+
                     android:layout_marginLeft="8dp"
                     android:layout_marginBottom="8dp" />
             </android.support.constraint.ConstraintLayout>
@@ -280,8 +282,8 @@
 
                 <ImageView
                     android:id="@+id/iv_id_back"
-                    android:layout_width="85dp"
-                    android:layout_height="85dp"
+                    android:layout_width="150dp"
+                    android:layout_height="250dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="8dp"
@@ -290,10 +292,17 @@
                     app:layout_constraintLeft_toLeftOf="@+id/iv_background_id_back"
                     app:layout_constraintRight_toRightOf="@+id/iv_background_id_back"
                     app:layout_constraintTop_toTopOf="@+id/iv_background_id_back"
-                    app:srcCompat="@drawable/ic_photo_camera" />
+                     />
             </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>
     </LinearLayout>
-
+    <Button
+        android:id="@+id/b_new_search_result_documents"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_form"
+        android:layout_alignParentBottom="true"
+        android:text="@string/search_form"
+        android:textColor="@color/text_color_white"
+        android:background="@drawable/selector_primary_button"/>
 </RelativeLayout>

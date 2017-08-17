@@ -68,7 +68,7 @@ public class GetINE extends AsyncTask<String, Void, Void> {
                 ServerConnectionDownloadFile serverConnection = new ServerConnectionDownloadFile();
                 String endPoint = SharedPreferencesUtils.readFromPreferencesString(activityOrigin, SharedPreferencesUtils.URL_TEKNEI, activityOrigin.getString(R.string.default_url_teknei));
                 Object arrayResponse[] = serverConnection.connection(
-                        activityOrigin, null, endPoint + ApiConstants.METHOD_GET_RESULT_OPTION + ApiConstants.METHOD_GET_RESULT_OPTION_INE+"/"+ curp+"/"+idoperation+"/", token, ServerConnection.METHOD_GET, null, "",""
+                        activityOrigin, null, endPoint + ApiConstants.METHOD_GET_RESULT_OPTION + ApiConstants.METHOD_GET_RESULT_OPTION_INE+"/"+ curp+"/"+idoperation+"/", token, ServerConnection.METHOD_GET, ApiConstants.OPTION_INE_FILE
                 );
                 if (arrayResponse[1] != null) {
                     manageResponse(arrayResponse);

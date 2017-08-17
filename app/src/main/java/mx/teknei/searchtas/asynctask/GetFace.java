@@ -72,7 +72,7 @@ public class GetFace extends AsyncTask<String, Void, Void> {
                 ServerConnectionDownloadFile serverConnection = new ServerConnectionDownloadFile();
                 String endPoint = SharedPreferencesUtils.readFromPreferencesString(activityOrigin, SharedPreferencesUtils.URL_TEKNEI, activityOrigin.getString(R.string.default_url_teknei));
                 Object arrayResponse[] = serverConnection.connection(
-                        activityOrigin, null, endPoint + ApiConstants.METHOD_GET_RESULT_OPTION + ApiConstants.METHOD_GET_RESULT_OPTION_FACE+"/"+ curp+"/"+idoperation+"/", token, ServerConnection.METHOD_GET, null, "",""
+                        activityOrigin, null, endPoint + ApiConstants.METHOD_GET_RESULT_OPTION + ApiConstants.METHOD_GET_RESULT_OPTION_FACE+"/"+ curp+"/"+idoperation+"/", token, ServerConnection.METHOD_GET,ApiConstants.OPTION_FACE_FILE
                 );
                 if (arrayResponse[1] != null) {
                     manageResponse(arrayResponse);

@@ -48,5 +48,6 @@
     <string name="b_cancel_finger_dialog">Cancelar</string>
 
     <!--Result Strings-->
+    <string name="result_activity_name">Resultado de consulta</string>
     <string name="message_result_search_operation">Obteniendo archivos</string>
 </resources>

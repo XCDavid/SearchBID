@@ -50,14 +50,15 @@ public class ServerConnectionDownloadFile {
     public static final String METHOD_DELETE = "DELETE";
 
     private String tokenID = "";
-    private String basicAutho = "";
-    private String operationId = "";
+//    private String basicAutho = "";
+//    private String operationId = "";
+    private String typeFile = "";
     public static final int TIME_OUT = 10000;
     Integer statusResponse = null;
 
     Bitmap bmp;
 
-    public Object[] connection(Context context, String stringJSON, String serverMethod, String token, String method, File file, String autho,String operationID) {
+    public Object[] connection(Context context, String stringJSON, String serverMethod, String token, String method, String fileType) {
         // Creamos la peticion http
         HttpParams httpParameters = new BasicHttpParams();
         HttpConnectionParams.setConnectionTimeout(httpParameters, TIME_OUT);
@@ -69,8 +70,9 @@ public class ServerConnectionDownloadFile {
         HttpGet httpGet = null;
         HttpDelete httpDelete = null;
         this.tokenID = token;
-        this.basicAutho = autho;
-        this.operationId = operationID;
+//        this.basicAutho = autho;
+//        this.operationId = operationID;
+        this.typeFile = fileType;
 //		this.tokenID = HerApplication.HEADER_APPLICATION_KEY;
         //Selecciona que tipo de metodo crear
         switch (method) {
@@ -103,7 +105,7 @@ public class ServerConnectionDownloadFile {
             e1.printStackTrace();
         }
         //Si hay entidad de datos se agrega al Post en caso de que el metodo POST tambien exista
-        if (entityData != null && file == null && !serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential")) {
+        if (entityData != null ) {
             entityData.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, APPLICATION_JSON));
             if (httpPOST != null) {
                 httpPOST.setEntity(entityData);
@@ -112,40 +114,40 @@ public class ServerConnectionDownloadFile {
 
         //Image attaching
         // creates a unique boundary based on time stamp
-        String boundary = "===" + System.currentTimeMillis() + "===";
-        MultipartEntityBuilder multipartEntity = MultipartEntityBuilder.create();
-        multipartEntity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-        multipartEntity.setBoundary(boundary);
-        File fileOut = file;
-        File fileAux = new File(Environment.getExternalStorageDirectory() + File.separator + "face_14.jpg");
-        if (!fileAux.exists()) {
-            try {
-                fileAux.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        if (fileOut != null) {
-//            multipartEntity.addBinaryBody("file", fileAux, ContentType.create("image/jpeg"), fileAux.getName());
-            multipartEntity.addBinaryBody("json", fileOut, ContentType.APPLICATION_JSON, fileOut.getName());
-
-//            ContentBody cbFile = new FileBody(file, "multipart/form-data");
-//            multipartEntity.addPart("json", cbFile);
-        }
+//        String boundary = "===" + System.currentTimeMillis() + "===";
+//        MultipartEntityBuilder multipartEntity = MultipartEntityBuilder.create();
+//        multipartEntity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+//        multipartEntity.setBoundary(boundary);
+//        File fileOut = file;
+//        File fileAux = new File(Environment.getExternalStorageDirectory() + File.separator + "face_14.jpg");
+//        if (!fileAux.exists()) {
+//            try {
+//                fileAux.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        if (fileOut != null) {
+////            multipartEntity.addBinaryBody("file", fileAux, ContentType.create("image/jpeg"), fileAux.getName());
+//            multipartEntity.addBinaryBody("json", fileOut, ContentType.APPLICATION_JSON, fileOut.getName());
+//
+////            ContentBody cbFile = new FileBody(file, "multipart/form-data");
+////            multipartEntity.addPart("json", cbFile);
+//        }
         //Json string attaching
-        if (sendJSON != null) {
-            JSONObject jsonObj = null;
-            try {
-                jsonObj = new JSONObject(stringJSON);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-//                multipartEntity.addTextBody("json2", sendJSON, ContentType.TEXT_PLAIN);
-            multipartEntity.setStrictMode();
-            if (httpPOST != null && (serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential") || serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential"))) {
-                httpPOST.setEntity(multipartEntity.build());
-            }
-        }
+//        if (sendJSON != null) {
+//            JSONObject jsonObj = null;
+//            try {
+//                jsonObj = new JSONObject(stringJSON);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+////                multipartEntity.addTextBody("json2", sendJSON, ContentType.TEXT_PLAIN);
+//            multipartEntity.setStrictMode();
+//            if (httpPOST != null && (serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential") || serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential"))) {
+//                httpPOST.setEntity(multipartEntity.build());
+//            }
+//        }
 //        }
         // Ejecuta la peticion HTTP POST / GET / DELETE al servidor
 
@@ -153,25 +155,14 @@ public class ServerConnectionDownloadFile {
             if (httpPOST != null) {
                 //Normal headers add
                 httpPOST.addHeader(HTTP.CONTENT_TYPE, APPLICATION_JSON);
-                if (serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential") || serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential")) {
-                    httpPOST.setHeader(HTTP.CONTENT_TYPE, "multipart/form-data; boundary=" + boundary);
-                }
                 /****///Token add       //Authorization      //Token" "token_del_login *****************************
                 httpPOST.addHeader(HEADER_TOKEN_CODE, HEADER_TOKEN_AUX_VALUE + tokenID);
-                if (basicAutho != null && !basicAutho.equals("")) {
-                    //*///Basic Authorization add       //Authorization      //Basic" "code
-                    httpPOST.addHeader(HEADER_TOKEN_CODE, HEADER_BASIC_AUX_VALUE + basicAutho);
-                }
                 httpResponse = clienteHTTP.execute(httpPOST);
             } else if (httpGet != null) {
                 //Normal headers add
                 httpGet.addHeader(HTTP.CONTENT_TYPE, APPLICATION_JSON);
                 //Token add
                 httpGet.addHeader(HEADER_TOKEN_CODE, HEADER_TOKEN_AUX_VALUE + tokenID);
-                if (basicAutho != null && !basicAutho.equals("")) {
-                    //*///Basic Authorization add       //Authorization      //Basic" "code
-                    httpGet.setHeader(HEADER_TOKEN_CODE, HEADER_BASIC_AUX_VALUE + basicAutho);
-                }
                 httpResponse = clienteHTTP.execute(httpGet);
             } else if (httpDelete != null) {
                 //Normal headers add
@@ -184,8 +175,10 @@ public class ServerConnectionDownloadFile {
             Log.d("error Response", "Response: " + ee.getMessage());
         }
 
+        String nameFileSearch="";
+
         File f = new File(Environment.getExternalStorageDirectory()
-                + File.separator + "face_result_" + operationId + ".jpg");
+                + File.separator + typeFile  + ".jpg");
         if (httpResponse != null) {
             statusResponse = httpResponse.getStatusLine().getStatusCode();
             Log.i("Status response -> ", "estatus : " + statusResponse);
@@ -202,7 +195,7 @@ public class ServerConnectionDownloadFile {
 //                    f = new File(Environment.getExternalStorageDirectory() + File.separator + "face_result_" + operationId + ".jpg");
                 }
                 FileOutputStream fi = new FileOutputStream(Environment.getExternalStorageDirectory()
-                        + File.separator + "face_result_" + operationId + ".jpg");
+                        + File.separator + typeFile  + ".jpg");
 
                 byte[] buf = new byte[8 * 1024];
                 int len = 0;
@@ -225,6 +218,6 @@ public class ServerConnectionDownloadFile {
 //                e.printStackTrace();
 //            }
 //        }
-        return new Object[]{bmp, statusResponse, tokenID};
+        return new Object[]{bmp, statusResponse, f};
     }
 }

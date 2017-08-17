@@ -21,6 +21,8 @@ public class ApiConstants {
 
     public static final int METHOD_GET_RESULT_OPTION_INE = 1;
     public static final int METHOD_GET_RESULT_OPTION_FACE = 2;
+    public static final String OPTION_INE_FILE = "ine_search";
+    public static final String OPTION_FACE_FILE = "face_search";
 
 
     public static final String METHOD_START_OPERATION = "rest/v1/start";
