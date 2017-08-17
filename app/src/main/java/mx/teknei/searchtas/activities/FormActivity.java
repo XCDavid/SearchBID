@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import mx.teknei.searchtas.R;
+import mx.teknei.searchtas.asynctask.FindByCurp;
 import mx.teknei.searchtas.dialogs.AlertDialog;
 import mx.teknei.searchtas.utils.ApiConstants;
 import mx.teknei.searchtas.utils.SharedPreferencesUtils;
@@ -104,8 +105,9 @@ public class FormActivity extends BaseActivity implements View.OnClickListener {
 //        if(operationID.equals("")){
 //            String jsonString = buildJSON();
 //            new StartOperation(FormActivity.this, token, jsonString).execute();
+            new FindByCurp(FormActivity.this, etCurp.getText().toString(), token).execute();
 //        }else {
-            goNext();
+//            goNext();
 //        }
     }
 

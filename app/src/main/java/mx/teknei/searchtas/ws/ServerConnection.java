@@ -97,7 +97,7 @@ public class ServerConnection {
             e1.printStackTrace();
         }
         //Si hay entidad de datos se agrega al Post en caso de que el metodo POST tambien exista
-        if ( entityData != null && file == null && !serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential")) {
+        if ( entityData != null && file == null ) {
             entityData.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, APPLICATION_JSON));
             if (httpPOST != null) {
                 httpPOST.setEntity(entityData);
@@ -120,26 +120,22 @@ public class ServerConnection {
             }
         }
         if (fileOut != null  ) {
-//            multipartEntity.addBinaryBody("file", fileAux, ContentType.create("image/jpeg"), fileAux.getName());
             multipartEntity.addBinaryBody("json", fileOut,ContentType.APPLICATION_JSON,fileOut.getName());
-
-//            ContentBody cbFile = new FileBody(file, "multipart/form-data");
-//            multipartEntity.addPart("json", cbFile);
         }
             //Json string attaching
-            if (sendJSON != null) {
-                JSONObject jsonObj = null;
-                try {
-                    jsonObj = new JSONObject(stringJSON);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-//                multipartEntity.addTextBody("json2", sendJSON, ContentType.TEXT_PLAIN);
-                multipartEntity.setStrictMode();
-                if (httpPOST != null && (serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential") || serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential"))) {
-                    httpPOST.setEntity(multipartEntity.build());
-                }
-            }
+//            if (sendJSON != null) {
+//                JSONObject jsonObj = null;
+//                try {
+//                    jsonObj = new JSONObject(stringJSON);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+////                multipartEntity.addTextBody("json2", sendJSON, ContentType.TEXT_PLAIN);
+//                multipartEntity.setStrictMode();
+//                if (httpPOST != null ) {
+//                    httpPOST.setEntity(multipartEntity.build());
+//                }
+//            }
 //        }
         // Ejecuta la peticion HTTP POST / GET / DELETE al servidor
 
@@ -147,9 +143,6 @@ public class ServerConnection {
             if (httpPOST != null) {
                 //Normal headers add
                 httpPOST.addHeader(HTTP.CONTENT_TYPE, APPLICATION_JSON);
-                if (serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential") || serverMethod.equals("http://192.168.1.200:28080/BIDServer/rest/v1/credential")) {
-                    httpPOST.setHeader(HTTP.CONTENT_TYPE, "multipart/form-data; boundary="+boundary);
-                }
                 /****///Token add       //Authorization      //Token" "token_del_login *****************************
                 httpPOST.addHeader(HEADER_TOKEN_CODE, HEADER_TOKEN_AUX_VALUE + tokenID);
                 if (basicAutho != null && !basicAutho.equals("")) {

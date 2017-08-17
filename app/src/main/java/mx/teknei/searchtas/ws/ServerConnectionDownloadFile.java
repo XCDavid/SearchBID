@@ -1,6 +1,8 @@
 package mx.teknei.searchtas.ws;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
 
@@ -53,6 +55,7 @@ public class ServerConnectionDownloadFile {
     public static final int TIME_OUT = 10000;
     Integer statusResponse = null;
 
+    Bitmap bmp;
 
     public Object[] connection(Context context, String stringJSON, String serverMethod, String token, String method, File file, String autho,String operationID) {
         // Creamos la peticion http
@@ -181,31 +184,25 @@ public class ServerConnectionDownloadFile {
             Log.d("error Response", "Response: " + ee.getMessage());
         }
 
-//        String responseJSONString = null;
         File f = new File(Environment.getExternalStorageDirectory()
-                + File.separator + "contract_" + operationId + ".pdf");
+                + File.separator + "face_result_" + operationId + ".jpg");
         if (httpResponse != null) {
             statusResponse = httpResponse.getStatusLine().getStatusCode();
             Log.i("Status response -> ", "estatus : " + statusResponse);
             HttpEntity entity = httpResponse.getEntity();
-
             try {
                 InputStream is = entity.getContent();
-//                responseJSONString = EntityUtils.toString(entity);
-                String typeS = "someFileName.pdf ";
-                String directory = Environment.getExternalStorageDirectory() + File.separator;
-//                directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/SomeFolderName/");
+                bmp = BitmapFactory.decodeStream(is);
                 // if no directory exists, create new directory
 //                if (!directory.exists()) {
 //                    directory.mkdir();
 //                }
                 if (f.exists()) {
                     f.delete();
-//                    f = new File(Environment.getExternalStorageDirectory() + File.separator + "contract_" + operationId + ".pdf");
+//                    f = new File(Environment.getExternalStorageDirectory() + File.separator + "face_result_" + operationId + ".jpg");
                 }
-
                 FileOutputStream fi = new FileOutputStream(Environment.getExternalStorageDirectory()
-                        + File.separator + "contract_" + operationId + ".pdf");
+                        + File.separator + "face_result_" + operationId + ".jpg");
 
                 byte[] buf = new byte[8 * 1024];
                 int len = 0;
@@ -214,7 +211,7 @@ public class ServerConnectionDownloadFile {
                 }
                 fi.close();
                 is.close();
-                System.out.println("Hurra!! : D");
+//                System.out.println("Hurra!! : D");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -228,6 +225,6 @@ public class ServerConnectionDownloadFile {
 //                e.printStackTrace();
 //            }
 //        }
-        return new Object[]{f, statusResponse, tokenID};
+        return new Object[]{bmp, statusResponse, tokenID};
     }
 }

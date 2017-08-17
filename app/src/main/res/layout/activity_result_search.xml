@@ -29,12 +29,12 @@
                     android:id="@+id/iv_background_face"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="30dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/selector_image_button"
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +62,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginEnd="5dp"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="0dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
@@ -109,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginEnd="5dp"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="0dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
@@ -179,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginEnd="5dp"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="0dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
@@ -221,8 +223,8 @@
 
                 <ImageView
                     android:id="@+id/iv_background_id_front"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
+                    android:layout_width="@dimen/id_width_result_search"
+                    android:layout_height="@dimen/id_height_result_search"
                     android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginLeft="8dp"
@@ -256,12 +258,13 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_background_id_back"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
+                    android:layout_width="@dimen/id_width_result_search"
+                    android:layout_height="@dimen/id_height_result_search"
                     android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"

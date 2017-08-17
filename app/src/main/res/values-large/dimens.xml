@@ -55,4 +55,7 @@
     <dimen name="vertical_separator_pay_confirm">30dp</dimen>
     <dimen name="horizontal_margin_pay_confirm">30dp</dimen>
 
+    <!--Result activity-->
+    <dimen name="id_width_result_search">350dp</dimen>
+    <dimen name="id_height_result_search">250dp</dimen>
 </resources>

@@ -10,6 +10,8 @@ public class SharedPreferencesUtils {
     public static final String TOKEN_APP = "token_app";
     public static final String USERNAME = "username";
 
+    public static final String ID_SEARCH_OPERATION = "id_operation";
+    public static final String CURP_SEARCH_OPERATION = "curp_operation";
 //    public static final String OPERATION_ID = "operation_id";
 //    public static final String SCAN_SAVE_ID = "id_scan_save_val";
 //    public static final String ID_SCAN = "id_scan_val";

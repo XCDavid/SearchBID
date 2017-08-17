@@ -14,6 +14,15 @@ public class ApiConstants {
     public static final String LOG_IN_USER = "login";
     public static final String LOG_OUT_USER = "logout";
     public static final String METHOD_CANCEL_OPERATION = "rest/v1/cancel?operationId=";
+
+    public static final String METHOD_SEARCH_CURP = "rest/v1/search/customer/";
+    public static final String METHOD_SEARCH_FINGER = "rest/v1/search/customer";
+    public static final String METHOD_GET_RESULT_OPTION = "rest/v1/search/customer/image/";
+
+    public static final int METHOD_GET_RESULT_OPTION_INE = 1;
+    public static final int METHOD_GET_RESULT_OPTION_FACE = 2;
+
+
     public static final String METHOD_START_OPERATION = "rest/v1/start";
     public static final String METHOD_CREDENTIALS = "rest/v1/credential";
     public static final String METHOD_FACE = "rest/v1/face";

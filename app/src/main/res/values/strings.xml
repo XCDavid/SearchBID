@@ -36,12 +36,17 @@
     <string name="name_form">* Nombre(s)</string>
     <string name="tv_curp_form">* CURP</string>
     <string name="search_form">Buscar</string>
-    <!--Form strings-->
-    <string name="finger_scan_activity_name">Formulario</string>
+    <string name="message_search_curp_operation">Buscando coincidencias</string>
+    <!--Finger Scan strings-->
+    <string name="finger_scan_activity_name">Huella dactilar</string>
     <string name="instructions_finger_scan">Presiona el botón gris, para comenzar la captura de la huella dactilar</string>
     <string name="search_finger_scan">Comprobar identidad</string>
+    <string name="message_search_finger_operation">Buscando coincidencias</string>
     <!--Finger Dialog-->
     <string name="tv_title_finger_dialog">Esperando Escaneo</string>
     <string name="tv_message_finger_dialog">Coloca el dedo en el escaner biométrico mientras la luz roja esta encendida.</string>
     <string name="b_cancel_finger_dialog">Cancelar</string>
+
+    <!--Result Strings-->
+    <string name="message_result_search_operation">Obteniendo archivos</string>
 </resources>

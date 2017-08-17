@@ -27,12 +27,16 @@ import com.morpho.android.usb.USBManager;
 import com.morpho.morphosmart.sdk.ErrorCodes;
 import com.morpho.morphosmart.sdk.MorphoDevice;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import mx.teknei.searchtas.R;
+import mx.teknei.searchtas.asynctask.SearchFinger;
 import mx.teknei.searchtas.dialogs.FingerScanDialog;
 import mx.teknei.searchtas.mso.MSOConnection;
 import mx.teknei.searchtas.mso.MSOShower;
@@ -138,31 +142,29 @@ public class FingerScanActivity extends BaseActivity implements View.OnClickList
             imgFP.setImageBitmap(msoBitMap);
 //            String operationID = SharedPreferencesUtils.readFromPreferencesString(FingerPrintsActivity.this, SharedPreferencesUtils.OPERATION_ID, "");
             String dir = Environment.getExternalStorageDirectory() + File.separator;
-            String finger = "";
             switch (imgFP.getId()) {
                 case R.id.b_finger_search_finger_scan:
-                    finger = "search";
                     base64Finger = mx.teknei.searchtas.tools.Base64.encode(imgFPBuff);
                     break;
             }
             //Guarda nueva imagen del dedo
-            File f = new File(Environment.getExternalStorageDirectory() + File.separator + "finger_search" + ".jpg");
-            if (f.exists()) {
-                f.delete();
-                f = new File(Environment.getExternalStorageDirectory() + File.separator + "finger_search" + ".jpg");
-            }
-            try {
-                f.createNewFile();
-                //write the bytes in file
-                FileOutputStream fo = new FileOutputStream(f);
-                fo.write(imgFPBuff);
-                // remember close de FileOutput
-                fo.close();
-                imageFileFinger = f;
-            } catch (IOException e) {
-                e.printStackTrace();
-                f = null;
-            }
+//            File f = new File(Environment.getExternalStorageDirectory() + File.separator + "finger_search" + ".jpg");
+//            if (f.exists()) {
+//                f.delete();
+//                f = new File(Environment.getExternalStorageDirectory() + File.separator + "finger_search" + ".jpg");
+//            }
+//            try {
+//                f.createNewFile();
+//                //write the bytes in file
+//                FileOutputStream fo = new FileOutputStream(f);
+//                fo.write(imgFPBuff);
+//                // remember close de FileOutput
+//                fo.close();
+//                imageFileFinger = f;
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                f = null;
+//            }
         }
     }
 
@@ -184,7 +186,7 @@ public class FingerScanActivity extends BaseActivity implements View.OnClickList
 //            String localTime = PhoneSimUtils.getLocalDateAndTime();
 //            SharedPreferencesUtils.saveToPreferencesString(FingerPrintsActivity.this, SharedPreferencesUtils.TIMESTAMP_FINGERPRINTS, localTime);
 //
-//            String jsonString = buildJSON();
+            String jsonString = buildJSON();
 ////                Log.d("FingerJSON", "JSON FINGERs:" + jsonString);
 //            fileList.add(fileJson);
 //            if (imageFileIndexLeft != null){
@@ -194,12 +196,31 @@ public class FingerScanActivity extends BaseActivity implements View.OnClickList
 //                fileList.add(imageFileIndexRight);
 //            }
 //            Log.d("ArrayList Files", "Files:" + fileList.size());
-//            new FingersSend(FingerPrintsActivity.this, token, jsonString, fileList).execute();
-            goNext();
+            new SearchFinger(FingerScanActivity.this, token, jsonString).execute();
+//            goNext();
         } else {
             Toast.makeText(FingerScanActivity.this, "Escanea un dedo para continuar", Toast.LENGTH_SHORT).show();
 //                goNext();
         }
+    }
+    public String buildJSON() {
+        String operationID = SharedPreferencesUtils.readFromPreferencesString(FingerScanActivity.this, SharedPreferencesUtils.ID_SEARCH_OPERATION, "");
+        //Construimos el JSON
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id",operationID);
+            if (base64Finger != null && !base64Finger.equals("")) {
+                try {
+                    jsonObject.put("li", base64Finger);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.w("JSON SEND","JSON->"+jsonObject.toString());
+        return jsonObject.toString();
     }
 
     @Override
