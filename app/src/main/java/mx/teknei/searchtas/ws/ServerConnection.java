@@ -110,18 +110,6 @@ public class ServerConnection {
         MultipartEntityBuilder multipartEntity = MultipartEntityBuilder.create();
         multipartEntity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipartEntity.setBoundary(boundary);
-        File fileOut = file;
-        File fileAux = new File(Environment.getExternalStorageDirectory()+File.separator+ "face_14.jpg");
-        if (!fileAux.exists()) {
-            try {
-                fileAux.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        if (fileOut != null  ) {
-            multipartEntity.addBinaryBody("json", fileOut,ContentType.APPLICATION_JSON,fileOut.getName());
-        }
             //Json string attaching
 //            if (sendJSON != null) {
 //                JSONObject jsonObj = null;

@@ -17,10 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-
 import mx.teknei.searchtas.R;
 import mx.teknei.searchtas.asynctask.GetFace;
 import mx.teknei.searchtas.asynctask.GetINE;
@@ -79,7 +75,7 @@ public class ResultSearchActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.b_continue_form:
+            case R.id.b_new_search_result_documents:
                 SharedPreferencesUtils.cleanSharedPreferencesOperation(ResultSearchActivity.this);
 
                 Intent end = new Intent(ResultSearchActivity.this, FormActivity.class);

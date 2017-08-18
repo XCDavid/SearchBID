@@ -30,11 +30,6 @@ import com.morpho.morphosmart.sdk.MorphoDevice;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import mx.teknei.searchtas.R;
 import mx.teknei.searchtas.asynctask.SearchFinger;
 import mx.teknei.searchtas.dialogs.FingerScanDialog;
@@ -53,7 +48,6 @@ public class FingerScanActivity extends BaseActivity implements View.OnClickList
 
     private byte[] imgFPBuff = null;
     String base64Finger;
-    File imageFileFinger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,22 +120,12 @@ public class FingerScanActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    private boolean hasImage(@NonNull ImageView view) {
-        Drawable drawable = view.getDrawable();
-        boolean hasImage = (drawable != null);
-        if (hasImage && (drawable instanceof BitmapDrawable)) {
-            hasImage = ((BitmapDrawable) drawable).getBitmap() != null;
-        }
-        return hasImage;
-    }
 
     public void setImageToRightFinger() {
         if (imgFP != null) {
             Bitmap msoBitMap = MSOConnection.getInstance().getBitMap();
             Log.d("base64","lenght:"+imgFPBuff.length);
             imgFP.setImageBitmap(msoBitMap);
-//            String operationID = SharedPreferencesUtils.readFromPreferencesString(FingerPrintsActivity.this, SharedPreferencesUtils.OPERATION_ID, "");
-            String dir = Environment.getExternalStorageDirectory() + File.separator;
             switch (imgFP.getId()) {
                 case R.id.b_finger_search_finger_scan:
                     base64Finger = mx.teknei.searchtas.tools.Base64.encode(imgFPBuff);
@@ -171,36 +155,18 @@ public class FingerScanActivity extends BaseActivity implements View.OnClickList
     @Override
     public void sendPetition() {
         String token = SharedPreferencesUtils.readFromPreferencesString(this, SharedPreferencesUtils.TOKEN_APP, "");
-//        String fingerOperation = SharedPreferencesUtils.readFromPreferencesString(this, SharedPreferencesUtils.FINGERS_OPERATION, "");
         boolean bitMapTake = false;
-
         if (bFingerprint.getDrawable() instanceof BitmapDrawable) {
             bitMapTake = true;
         }/* else if (bIndexLeft.getDrawable() instanceof VectorDrawableCompat || bIndexRight.getDrawable() instanceof VectorDrawableCompat){
             bitMapTake = false;
         }*/
         //DES_COMENTAR
-//        if(bitMapTake){
-            //BORRAR
-            if (true) {
-//            String localTime = PhoneSimUtils.getLocalDateAndTime();
-//            SharedPreferencesUtils.saveToPreferencesString(FingerPrintsActivity.this, SharedPreferencesUtils.TIMESTAMP_FINGERPRINTS, localTime);
-//
+        if(bitMapTake){
             String jsonString = buildJSON();
-////                Log.d("FingerJSON", "JSON FINGERs:" + jsonString);
-//            fileList.add(fileJson);
-//            if (imageFileIndexLeft != null){
-//                fileList.add(imageFileIndexLeft);
-//            }
-//            if (imageFileIndexRight != null){
-//                fileList.add(imageFileIndexRight);
-//            }
-//            Log.d("ArrayList Files", "Files:" + fileList.size());
             new SearchFinger(FingerScanActivity.this, token, jsonString).execute();
-//            goNext();
         } else {
             Toast.makeText(FingerScanActivity.this, "Escanea un dedo para continuar", Toast.LENGTH_SHORT).show();
-//                goNext();
         }
     }
     public String buildJSON() {

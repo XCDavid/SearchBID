@@ -62,7 +62,6 @@
             android:inputType="textCapCharacters"
             android:maxLength="18"
             android:maxLines="1"
-            android:text="AACJ881203"
             />
     </LinearLayout>
     <Button
