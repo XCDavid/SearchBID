@@ -51,7 +51,7 @@ public class LogIn extends AsyncTask<String, Void, Void> {
         progressDialog.setCancelable(false);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.show();
-        endTime = System.currentTimeMillis() + 2000;
+        endTime = System.currentTimeMillis() + 1000;
         Log.i("Wait", "Timer Start: " + System.currentTimeMillis());
         Log.i("Wait", "Timer END: " + endTime);
         ConnectivityManager check = (ConnectivityManager) activityOrigin.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -68,8 +68,8 @@ public class LogIn extends AsyncTask<String, Void, Void> {
         if (hasConecction) {
             try {
                 ServerConnection serverConnection = new ServerConnection();
-                String endPoint = SharedPreferencesUtils.readFromPreferencesString(activityOrigin,SharedPreferencesUtils.URL_TEKNEI, activityOrigin.getString(R.string.default_url_teknei));
-                Object arrayResponse[] = serverConnection.connection(activityOrigin, null, endPoint + ApiConstants.LOG_IN_USER , token, ServerConnection.METHOD_GET,null,authorization);
+                String endPoint = SharedPreferencesUtils.readFromPreferencesString(activityOrigin, SharedPreferencesUtils.URL_TEKNEI, activityOrigin.getString(R.string.default_url_teknei));
+                Object arrayResponse[] = serverConnection.connection(activityOrigin, null, endPoint + ApiConstants.LOG_IN_USER, token, ServerConnection.METHOD_GET, null, authorization);
                 if (arrayResponse[1] != null) {
                     manageResponse(arrayResponse);
                 } else {
@@ -121,16 +121,12 @@ public class LogIn extends AsyncTask<String, Void, Void> {
                 String tokenGet = "";
                 try {
                     tokenGet = responseJSONObject.getString("token");
-                    SharedPreferencesUtils.saveToPreferencesString(activityOrigin,SharedPreferencesUtils.TOKEN_APP,tokenGet);
-//                    SharedPreferencesUtils.saveToPreferencesString(activityOrigin,SharedPreferencesUtils.USERNAME,userToCheck);
+                    SharedPreferencesUtils.saveToPreferencesString(activityOrigin, SharedPreferencesUtils.TOKEN_APP, tokenGet);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 ((BaseActivity) activityOrigin).goNext();
             } else {
-                //Borrar
-                SharedPreferencesUtils.saveToPreferencesString(activityOrigin,SharedPreferencesUtils.TOKEN_APP,"123");
-//                ((BaseActivity) activityOrigin).goNext();
                 AlertDialog dialogoAlert;
                 dialogoAlert = new AlertDialog(activityOrigin, activityOrigin.getString(R.string.message_ws_notice), errorMessage, ApiConstants.ACTION_TRY_AGAIN);
                 dialogoAlert.setCancelable(false);
@@ -138,9 +134,6 @@ public class LogIn extends AsyncTask<String, Void, Void> {
                 dialogoAlert.show();
             }
         } else {
-            //Borrar
-            SharedPreferencesUtils.saveToPreferencesString(activityOrigin,SharedPreferencesUtils.TOKEN_APP,"123");
-//            ((BaseActivity) activityOrigin).goNext();
             errorMessage = activityOrigin.getString(R.string.message_ws_no_internet);
             AlertDialog dialogoAlert;
             dialogoAlert = new AlertDialog(activityOrigin, activityOrigin.getString(R.string.message_ws_notice), errorMessage, ApiConstants.ACTION_TRY_AGAIN);
@@ -148,7 +141,6 @@ public class LogIn extends AsyncTask<String, Void, Void> {
             dialogoAlert.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             dialogoAlert.show();
         }
-
     }
 
 }

@@ -20,7 +20,6 @@ import mx.teknei.searchtas.utils.SharedPreferencesUtils;
 import mx.teknei.searchtas.ws.ServerConnection;
 
 public class SearchFinger extends AsyncTask<String, Void, Void> {
-    //    private String newToken;
     private String token;
     private String jsonS;
 
@@ -49,7 +48,7 @@ public class SearchFinger extends AsyncTask<String, Void, Void> {
         progressDialog.setCancelable(false);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.show();
-        endTime = System.currentTimeMillis() + 2000;
+        endTime = System.currentTimeMillis() + 1000;
         Log.i("Wait", "Timer Start: " + System.currentTimeMillis());
         Log.i("Wait", "Timer END: " + endTime);
         ConnectivityManager check = (ConnectivityManager) activityOrigin.getSystemService(Context.CONNECTIVITY_SERVICE);

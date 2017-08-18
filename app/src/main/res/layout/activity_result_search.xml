@@ -302,7 +302,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height_form"
         android:layout_alignParentBottom="true"
-        android:text="@string/search_form"
+        android:text="@string/button_new_result_search_operation"
         android:textColor="@color/text_color_white"
         android:background="@drawable/selector_primary_button"/>
 </RelativeLayout>

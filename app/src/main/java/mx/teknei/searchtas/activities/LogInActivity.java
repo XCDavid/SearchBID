@@ -35,9 +35,6 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         bLogIn.setOnClickListener(this);
 
         saveSharedPreferenceByDefault();
-
-        //Borrar
-//        SharedPreferencesUtils.deleteFromPreferences(this, SharedPreferencesUtils.OPERATION_ID);
     }
 
     @Override
@@ -70,14 +67,12 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void sendPetition() {
         String authorization = Base64.encodeToString(new String(user + ":" + pass).getBytes(), Base64.DEFAULT);
-//        if (user.equals("admin")) {
-//            Intent i = new Intent(this, SettingsActivity.class);
-//            startActivity(i);
-//            Intent i = new Intent(this, FormActivity.class);
-//            startActivity(i);
-//        }else{
+        if (user.equals("admin")) {
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
+        } else {
             new LogIn(LogInActivity.this, user, pass, "", authorization).execute();
-//        }
+        }
     }
 
     @Override
@@ -88,16 +83,8 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
     }
 
     public void saveSharedPreferenceByDefault() {
-//        String urlIdScan = SharedPreferencesUtils.readFromPreferencesString(this, SharedPreferencesUtils.URL_ID_SCAN, getString(R.string.default_url_id_scan));
-//        String licenseIdScan = SharedPreferencesUtils.readFromPreferencesString(this, SharedPreferencesUtils.LICENSE_ID_SCAN, getString(R.string.default_license_id_scan));
         String urlTeknei = SharedPreferencesUtils.readFromPreferencesString(this, SharedPreferencesUtils.URL_TEKNEI, getString(R.string.default_url_teknei));
-//        String urlMobbSign = SharedPreferencesUtils.readFromPreferencesString(this, SharedPreferencesUtils.URL_MOBBSIGN, getString(R.string.default_url_mobbsign));
-//        String licenseMobbSign = SharedPreferencesUtils.readFromPreferencesString(this, SharedPreferencesUtils.MOBBSIGN_LICENSE, getString(R.string.default_license_mobbsign));
-//        SharedPreferencesUtils.saveToPreferencesString(LogInActivity.this, SharedPreferencesUtils.URL_ID_SCAN, urlIdScan);
-//        SharedPreferencesUtils.saveToPreferencesString(LogInActivity.this, SharedPreferencesUtils.LICENSE_ID_SCAN, licenseIdScan);
         SharedPreferencesUtils.saveToPreferencesString(LogInActivity.this, SharedPreferencesUtils.URL_TEKNEI, urlTeknei);
-//        SharedPreferencesUtils.saveToPreferencesString(LogInActivity.this, SharedPreferencesUtils.URL_MOBBSIGN, urlMobbSign);
-//        SharedPreferencesUtils.saveToPreferencesString(LogInActivity.this, SharedPreferencesUtils.MOBBSIGN_LICENSE, licenseMobbSign);
     }
 
 }

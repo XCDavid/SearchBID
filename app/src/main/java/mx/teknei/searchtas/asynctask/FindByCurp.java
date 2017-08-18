@@ -47,7 +47,7 @@ public class FindByCurp extends AsyncTask<String, Void, Void> {
         progressDialog.setCancelable(false);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.show();
-        endTime = System.currentTimeMillis() + 2000;
+        endTime = System.currentTimeMillis() + 1000;
         Log.i("Wait", "Timer Start: " + System.currentTimeMillis());
         Log.i("Wait", "Timer END: " + endTime);
         ConnectivityManager check = (ConnectivityManager) activityOrigin.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -101,7 +101,13 @@ public class FindByCurp extends AsyncTask<String, Void, Void> {
                 errorMessage = activityOrigin.getString(R.string.message_ws_response_fail);
             }
         } else if (responseStatus >= 300 && responseStatus < 400) {
+
             errorMessage = activityOrigin.getString(R.string.message_ws_response_300);
+            String responseMessage = "";
+            if (responseStatus ==404){
+                responseMessage = "Usuario no encontrado.";
+            }
+            errorMessage = responseStatus + " - " + responseMessage;
         } else if (responseStatus >= 400 && responseStatus < 500) {
             errorMessage = activityOrigin.getString(R.string.message_ws_response_400);
         } else if (responseStatus >= 500 && responseStatus < 600) {

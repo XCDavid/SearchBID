@@ -61,7 +61,7 @@ public class AlertDialog extends Dialog implements View.OnClickListener {
                     //BORRAR
                     ((BaseActivity) activityOrigin).goNext();
                     //DES - COMENTAR
-//                ((BaseActivity) activityOrigin).sendPetition();
+//                    ((BaseActivity) activityOrigin).sendPetition();
                 }
                 if (actionIn == ApiConstants.ACTION_CANCEL_OPERATION) {
                     ((BaseActivity) activityOrigin).cancelOperation();

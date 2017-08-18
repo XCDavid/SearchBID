@@ -42,7 +42,7 @@ public class LogOut extends AsyncTask<String, Void, Void> {
         progressDialog.setCancelable(false);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         progressDialog.show();
-        endTime = System.currentTimeMillis() + 2000;
+        endTime = System.currentTimeMillis() + 1000;
         Log.i("Wait", "Timer Start: " + System.currentTimeMillis());
         Log.i("Wait", "Timer END: " + endTime);
         ConnectivityManager check = (ConnectivityManager) activityOrigin.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -98,6 +98,7 @@ public class LogOut extends AsyncTask<String, Void, Void> {
     protected void onPostExecute(Void result) {
         progressDialog.dismiss();
         SharedPreferencesUtils.deleteFromPreferences(activityOrigin,SharedPreferencesUtils.TOKEN_APP);
+        SharedPreferencesUtils.cleanSharedPreferencesOperation(activityOrigin);
         if (hasConecction) {
             if (responseOk) {
                 ((BaseActivity) activityOrigin).logOut();

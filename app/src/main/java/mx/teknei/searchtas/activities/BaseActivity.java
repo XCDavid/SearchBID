@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import mx.teknei.searchtas.BaseAction;
+import mx.teknei.searchtas.asynctask.LogOut;
 import mx.teknei.searchtas.utils.SharedPreferencesUtils;
 
 
@@ -59,12 +60,12 @@ public class BaseActivity extends AppCompatActivity implements BaseAction {
 //        }
         if (!token.equals("")) {
             //new AsynckTask para logOut de la aplicación
-//            new LogOut(this, token).execute();
+            new LogOut(this, token).execute();
             return;
         }
-//        if (token.equals("") && operationID.equals("")) {
-//            finish();
-//        }
+        if (token.equals("") /*&& operationID.equals("")*/) {
+            finish();
+        }
     }
 
     @Override

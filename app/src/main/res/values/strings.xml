@@ -33,7 +33,7 @@
     <string name="form_activity_name">Formulario</string>
     <string name="required_text_form">* Campos obligatorios</string>
     <string name="instructions_form">Ingresa los campos obligatorios y presiona el botón buscar, para iniciar la consulta.</string>
-    <string name="name_form">* Nombre(s)</string>
+    <string name="name_form">Nombre(s)</string>
     <string name="tv_curp_form">* CURP</string>
     <string name="search_form">Buscar</string>
     <string name="message_search_curp_operation">Buscando coincidencias</string>
@@ -50,4 +50,10 @@
     <!--Result Strings-->
     <string name="result_activity_name">Resultado de consulta</string>
     <string name="message_result_search_operation">Obteniendo archivos</string>
+    <string name="button_new_result_search_operation">Nueva busqueda</string>
+
+    <!--Settings strings-->
+    <string name="settings_activity_name">Ajustes</string>
+    <string name="tv_url_server_teknei_settings">Url servidor Teknei</string>
+    <string name="b_update_settings">Actualizar</string>
 </resources>
