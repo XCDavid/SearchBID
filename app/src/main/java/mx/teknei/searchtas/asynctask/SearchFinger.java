@@ -92,22 +92,28 @@ public class SearchFinger extends AsyncTask<String, Void, Void> {
         responseStatus = (Integer) arrayResponse[1];
         String dataExist = "";
         if (responseStatus >= 200 && responseStatus < 300) {
-            try {
-                dataExist = responseJSONObject.getString("Id "); //obtiene los datos del json de respuesta
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            if (!dataExist.equals("")) {
+//            try {
+//                dataExist = responseJSONObject.getString("hasFingers "); //obtiene los datos del json de respuesta
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            if (!dataExist.equals("")) {
                 responseOk = true;
-            } else {
-                errorMessage = activityOrigin.getString(R.string.message_ws_response_fail);
-            }
+//            } else {
+//                errorMessage = activityOrigin.getString(R.string.message_ws_response_fail);
+//            }
         } else if (responseStatus >= 300 && responseStatus < 400) {
             errorMessage = activityOrigin.getString(R.string.message_ws_response_300);
         } else if (responseStatus >= 400 && responseStatus < 500) {
-            errorMessage = activityOrigin.getString(R.string.message_ws_response_400);
+//            errorMessage = activityOrigin.getString(R.string.message_ws_response_400);
+            String errorResponse = "";
+            if (responseStatus == 404){
+                errorResponse = "El usuario NO se encuentra registrado.";
+            }
+            errorMessage = responseStatus + " - " + errorResponse;
         } else if (responseStatus >= 500 && responseStatus < 600) {
-            errorMessage = activityOrigin.getString(R.string.message_ws_response_500);
+//            errorMessage = activityOrigin.getString(R.string.message_ws_response_500);
+            errorMessage = responseStatus + " - " + "Ocurrió un problema con el servidor";
         }
     }
 
@@ -116,14 +122,14 @@ public class SearchFinger extends AsyncTask<String, Void, Void> {
         progressDialog.dismiss();
         if (hasConecction) {
             if (responseOk) {
-                int operationINT=-1;
-                String messageResp = "";
-                try {
-                    operationINT = responseJSONObject.getInt("operationId");
-                    messageResp = responseJSONObject.getString("errorMessage");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                int operationINT=-1;
+//                String messageResp = "";
+//                try {
+//                    operationINT = responseJSONObject.getInt("operationId");
+//                    messageResp = responseJSONObject.getString("errorMessage");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
                 ((BaseActivity) activityOrigin).goNext();
 //                SharedPreferencesUtils.saveToPreferencesString(activityOrigin, SharedPreferencesUtils.OPERATION_ID, operationINT+"");
 

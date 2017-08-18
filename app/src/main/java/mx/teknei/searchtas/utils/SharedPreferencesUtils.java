@@ -80,5 +80,8 @@ public class SharedPreferencesUtils {
 //        SharedPreferencesUtils.deleteFromPreferences(context,SharedPreferencesUtils.TIMESTAMP_FACE);
 //        SharedPreferencesUtils.deleteFromPreferences(context,SharedPreferencesUtils.TIMESTAMP_DOCUMENT);
 //        SharedPreferencesUtils.deleteFromPreferences(context,SharedPreferencesUtils.TIMESTAMP_FINGERPRINTS);
+
+        SharedPreferencesUtils.deleteFromPreferences(context,SharedPreferencesUtils.ID_SEARCH_OPERATION);
+        SharedPreferencesUtils.deleteFromPreferences(context,SharedPreferencesUtils.CURP_SEARCH_OPERATION);
     }
 }
