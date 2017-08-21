@@ -6,7 +6,7 @@
     <string name="get_user_log_in">Autenticando</string>
     <string name="message_log_out">Saliendo</string>
     <string name="message_title_logout">Salir de la aplicación</string>
-    <string name="message_message_logout">Al salir de la aplicación la operación actual será cancelada y la sesión actual se cerrará\n¿Desea salir de la aplicación?</string>
+    <string name="message_message_logout">Al salir de la aplicación la sesión actual se cerrará.\n¿Desea salir de la aplicación?</string>
     <string name="message_cancel_operation_title">Cancelar operación</string>
     <string name="message_cancel_operation">Cancelando operación</string>
     <string name="message_cancel_operation_alert">La operación actual será cancelada y regresarás a la pantalla principal\n¿Desea cancelar la operación actual?</string>

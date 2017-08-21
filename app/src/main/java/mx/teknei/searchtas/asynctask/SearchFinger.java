@@ -112,7 +112,9 @@ public class SearchFinger extends AsyncTask<String, Void, Void> {
             errorMessage = responseStatus + " - " + errorResponse;
         } else if (responseStatus >= 500 && responseStatus < 600) {
 //            errorMessage = activityOrigin.getString(R.string.message_ws_response_500);
-            errorMessage = responseStatus + " - " + "Ocurrió un problema con el servidor";
+//            errorMessage = responseStatus + " - " + "Ocurrió un problema con el servidor";
+            String errorResponse = "El usuario NO se encuentra registrado.";
+            errorMessage = responseStatus + errorResponse;
         }
     }
 

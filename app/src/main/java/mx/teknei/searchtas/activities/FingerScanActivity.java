@@ -16,10 +16,12 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,9 @@ import com.morpho.morphosmart.sdk.MorphoDevice;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import mx.teknei.searchtas.R;
 import mx.teknei.searchtas.asynctask.SearchFinger;
@@ -41,6 +46,7 @@ import mx.teknei.searchtas.utils.SharedPreferencesUtils;
 public class FingerScanActivity extends BaseActivity implements View.OnClickListener, MSOShower {
     Button searchButton;
     ImageButton bFingerprint;
+    Spinner sItems;
     private ImageButton imgFP;
 
     FingerScanDialog dialogScan;
@@ -48,6 +54,21 @@ public class FingerScanActivity extends BaseActivity implements View.OnClickList
 
     private byte[] imgFPBuff = null;
     String base64Finger;
+    List<String> spinnerArray;
+
+    String fingers[] = new String[]{"ll","lr","lm","li","lt","rl","rr","rm","ri","rt"};
+
+    private final static String sll="Izquierdo - Meñique";
+    private final static String slr="Izquierdo - Anular";
+    private final static String slm="Izquierdo - Medio";
+    private final static String sli="Izquierdo - Índice";
+    private final static String slt="Izquierdo - Pulgar";
+
+    private final static String srl="Derecho - Meñique";
+    private final static String srr="Derecho - Anular";
+    private final static String srm="Derecho - Medio";
+    private final static String sri="Derecho - Índice";
+    private final static String srt="Derecho - Pulgar";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +80,41 @@ public class FingerScanActivity extends BaseActivity implements View.OnClickList
         }
         searchButton = (Button) findViewById(R.id.b_continue_finger_scan);
         bFingerprint = (ImageButton) findViewById(R.id.b_finger_search_finger_scan);
-
+        sItems = (Spinner) findViewById(R.id.sp_finger_selector);
         searchButton.setOnClickListener(this);
         bFingerprint.setOnClickListener(this);
+
+        //Sppiner
+         spinnerArray =  new ArrayList<String>();
+        spinnerArray.add(sll);
+        spinnerArray.add(slr);
+        spinnerArray.add(slm);
+        spinnerArray.add(sli);
+        spinnerArray.add(slt);
+
+        spinnerArray.add(srl);
+        spinnerArray.add(srr);
+        spinnerArray.add(srm);
+        spinnerArray.add(sri);
+        spinnerArray.add(srt);
+
+
+//        spinnerArray.add("lr");
+//        spinnerArray.add("lm");
+//        spinnerArray.add("li");
+//        spinnerArray.add("lt");
+//        spinnerArray.add("rl");
+//        spinnerArray.add("rr");
+//        spinnerArray.add("rm");
+//        spinnerArray.add("ri");
+//        spinnerArray.add("rt");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        sItems.setAdapter(adapter);
 
         morphoDevice = new MorphoDevice();
         // ---------- Aqui se inicia la conexion con el lector(ya no se hace en el metodo mso1300
@@ -173,11 +226,45 @@ public class FingerScanActivity extends BaseActivity implements View.OnClickList
         String operationID = SharedPreferencesUtils.readFromPreferencesString(FingerScanActivity.this, SharedPreferencesUtils.ID_SEARCH_OPERATION, "");
         //Construimos el JSON
         JSONObject jsonObject = new JSONObject();
+        String selected = sItems.getSelectedItem().toString();
+        String fingerSend = "";
+        switch (selected){
+            case sll:
+                fingerSend = "ll";
+                break;
+            case slr:
+                fingerSend = "lr";
+                break;
+            case slm:
+                fingerSend = "lm";
+                break;
+            case sli:
+                fingerSend = "li";
+                break;
+            case slt:
+                fingerSend = "lt";
+                break;
+            case srl:
+                fingerSend = "rl";
+                break;
+            case srr:
+                fingerSend = "rr";
+                break;
+            case srm:
+                fingerSend = "rm";
+                break;
+            case sri:
+                fingerSend = "ri";
+                break;
+            case srt:
+                fingerSend = "rt";
+                break;
+        }
         try {
             jsonObject.put("id",operationID);
             if (base64Finger != null && !base64Finger.equals("")) {
                 try {
-                    jsonObject.put("li", base64Finger);
+                    jsonObject.put(fingerSend, base64Finger);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
