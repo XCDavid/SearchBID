@@ -18,6 +18,7 @@ public class ApiConstants {
     public static final String METHOD_SEARCH_CURP = "rest/v1/search/customer/";
     public static final String METHOD_SEARCH_FINGER = "rest/v1/search/customer";
     public static final String METHOD_GET_RESULT_OPTION = "rest/v1/search/customer/image/";
+    public static final String METHOD_GET_TIMESTAMP = "rest/v1/search/customer/ts/";
 
     public static final int METHOD_GET_RESULT_OPTION_INE = 1;
     public static final int METHOD_GET_RESULT_OPTION_FACE = 2;

@@ -16,17 +16,24 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import mx.teknei.searchtas.R;
 import mx.teknei.searchtas.asynctask.GetFace;
 import mx.teknei.searchtas.asynctask.GetINE;
+import mx.teknei.searchtas.asynctask.GetTimeStamp;
 import mx.teknei.searchtas.utils.ApiConstants;
 import mx.teknei.searchtas.utils.SharedPreferencesUtils;
 
-public class ResultSearchActivity extends AppCompatActivity implements View.OnClickListener{
+public class ResultSearchActivity extends AppCompatActivity implements View.OnClickListener {
     ImageView faceView;
     ImageView ineView;
     Button newSearch;
+
+    TextView tvTimeId;
+    TextView tvTimeFace;
+    TextView tvTimeDoc;
+    TextView tvTimeFing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,10 @@ public class ResultSearchActivity extends AppCompatActivity implements View.OnCl
         }
         faceView = (ImageView) findViewById(R.id.iv_front_face);
         ineView = (ImageView) findViewById(R.id.iv_id_front);
+        tvTimeId = (TextView) findViewById(R.id.tv_credential_fake_ine);
+        tvTimeFace = (TextView) findViewById(R.id.tv_face_fake_ine);
+        tvTimeDoc = (TextView) findViewById(R.id.tv_document_fake_ine);
+        tvTimeFing = (TextView) findViewById(R.id.tv_fingerprints_fake_ine);
         newSearch = (Button) findViewById(R.id.b_new_search_result_documents);
         newSearch.setOnClickListener(this);
 
@@ -46,6 +57,7 @@ public class ResultSearchActivity extends AppCompatActivity implements View.OnCl
         String token = SharedPreferencesUtils.readFromPreferencesString(this, SharedPreferencesUtils.TOKEN_APP, "");
         new GetFace(ResultSearchActivity.this, curp, operationID, token).execute();
         new GetINE(ResultSearchActivity.this, curp, operationID, token).execute();
+        new GetTimeStamp(ResultSearchActivity.this, curp, operationID, token).execute();
     }
 
     public void printFace(Bitmap bmp) {
@@ -70,6 +82,13 @@ public class ResultSearchActivity extends AppCompatActivity implements View.OnCl
 //        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bmp, y, x, true);
 
         ineView.setImageBitmap(rotatedBitmap);
+    }
+
+    public void setTiemStamp(String tId, String tFace, String tDocument, String tFingers) {
+        tvTimeId.setText(tId);
+        tvTimeFace.setText(tFace);
+        tvTimeDoc.setText(tDocument);
+        tvTimeFing.setText(tFingers);
     }
 
     @Override

@@ -50,6 +50,7 @@
     <!--Result Strings-->
     <string name="result_activity_name">Resultado de consulta</string>
     <string name="message_result_search_operation">Obteniendo archivos</string>
+    <string name="message_get_timestamp_operation">Obteniendo tiempos</string>
     <string name="button_new_result_search_operation">Nueva busqueda</string>
 
     <!--Settings strings-->

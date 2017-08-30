@@ -65,7 +65,10 @@ public class ServerConnection {
         HttpDelete httpDelete = null;
         this.tokenID = token;
         this.basicAutho = autho;
-//		this.tokenID = HerApplication.HEADER_APPLICATION_KEY;
+        Log.v("method", "method: " + method);
+        Log.v("token", "token: " + token);
+        Log.v("http URL SEND", "http: " + serverMethod);
+        Log.v("json SEND NO File", "json no file: " + stringJSON);
         //Selecciona que tipo de metodo crear
         switch (method) {
             case ServerConnection.METHOD_POST:
